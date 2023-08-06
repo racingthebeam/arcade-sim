@@ -1,6 +1,37 @@
 # arcade-sim
 
-The game is an arcade simulator, based on Theme Park.
+The game is an arcade simulator, based on Theme Park. Player manages an 80-90s style arcade, installing gaming cabinets and other attractions, hiring staff, managing policies and financial concerns; customers come in and play the games, eat, drink - basically spend their money until they're bored, then they leave.
+
+## Key Concepts
+
+  - Any static object placed in the world (except for walls and doors) is a Thing
+  - Each Thing placed in the world has a _build time_ and _cost_.
+  - Five types of autonomous agents: Customer, Customer Service Rep (CSR), Janitor, Security Guard, Technician
+
+## Arcade Metrics
+
+At any given time, the player's arcade can be represented by a metrics vector that includes e.g. popularity, safety cash reserves, running cost. This vector is used to determine a) how the arcade is performing against its competitors and b) whether potential customers decide to come to this arcade.
+
+  - [ ] decide exact list of metrics
+
+## Competitor Arcades
+
+For each level there are a number of competitor aracdes. These are not fully simulated; instead, the options are:
+
+  1. predetermined functions are used to model competitors metrics over time
+  2. lightweight simulation function
+
+In the first instance we will implement (1) since this is easy to implement; each level simply needs to have pregenerated per-competitor metrics curves. For harder levels these curves could even be related/react to the player's own metrics.
+
+The advantage of (2) is that competitors would be able to react to each other's decisions at a macro level, but this is far more complicated to implement, and there's no guarantee there will be a good outcome from a gameplay PoV. A poor implementation could even cause competitors to become insurmountably better that the player's arcade.
+
+Since an arcade's metric vector is ultimately all that matters, the method by which it is calculated is not important insofar as it relates to implementing all game features. So let's just do (1) until there's a proven need for (2).
+
+## Customer Attraction
+
+At regular intervals, a random cohort of potential customer agents is generated. Each of these agents ranks the active arcades (players + competitors) based on its own stats and decides which arcade to visit. Any that choose the player's arcade are spawned as agents at the entrance point.
+
+
 
 ## Win Conditions
 
