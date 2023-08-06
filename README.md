@@ -35,6 +35,7 @@ At regular intervals, a random cohort of potential customer agents is generated.
 
 Customer attributes:
 
+  - age: fixed at creation time; used to scale how much certain activities interest them, and to limit access to certain things
   - money: used to pay for games, food, drink etc.
   - skill vector: one entry for each game type
   - hunger: increases over time; once it hits a threshold, customer will prioritise finding food
@@ -50,9 +51,37 @@ Customer attributes:
 
 TODO: need a list of things that affect these attributes
 
+## IDEA: Customer Groups
+
+Players could form groups (either at time of arrival, or spontaneously during their visit). Customers in a group would try to act together, or at least stay roughly in the same vicinity. Groups make it easier to support games that require 2+ players (e.g. bowling, air hockey), since there's an implicit pool of partners.
+
 ---
 
 ## Implementation Details
+
+### Game Access
+
+Every game has a participation rule:
+
+  - single player: only one player can play at a time
+  - group multi player: min/max number of players, all of whom must come from the same group (examples: air hockey, bowling, 2-4 player cabinet)
+  - open multi player: min/max number of players, any visitor is a candidate (example: go karts)
+  - continuous multi player: max number of players, any visitor is a candidate, no fixed duration (example: soft-play)
+
+When a game becomes free, it is added to the free list of games. We need an algorithm to decide which visitor does what. Questions:
+
+  - can agents fight/compete over access to games? sounds like a fun mechanic
+  - if there's a multi-player game that someone wants to play, but they have no friends, can they claim a spot and wait for someone else to hopefully join them? This could be a cool mechanic for forming ad-hoc groups
+
+---
+
+Everything below here is just rambling...
+
+## Random Ideas
+
+  - Age policies - set min/max ages for activities. Allowing kids to play things too old for them might, e.g. scare them away, or be too dangerous (e.g. go-karting). Allowing older kids on soft-play might cause the younger ones to get injured
+
+
 
 ## Win Conditions
 
