@@ -29,9 +29,30 @@ Since an arcade's metric vector is ultimately all that matters, the method by wh
 
 ## Customer Attraction
 
-At regular intervals, a random cohort of potential customer agents is generated. Each of these agents ranks the active arcades (players + competitors) based on its own stats and decides which arcade to visit. Any that choose the player's arcade are spawned as agents at the entrance point.
+At regular intervals, a random cohort of potential customer agents is generated. Each of these agents ranks the active arcades (players + competitors) based on its own preferences and decides which arcade to visit. Those customers that choose the player's arcade are spawned as agents at the entrance point.
 
+## Customer Model
 
+Customer attributes:
+
+  - money: used to pay for games, food, drink etc.
+  - skill vector: one entry for each game type
+  - hunger: increases over time; once it hits a threshold, customer will prioritise finding food
+  - thirst: increases over time; once it hits a threshold, customer will prioritise finding drink
+  - rage: increases as customer spends time playing games they are not good at (multiplied by games intrinsic frustration-factor). Once rage exceeds threshold, customer may lash out (damage/destroy cabinets, attack people)
+  - boredom: increases if customer cannot find/play games they enjoy
+  - happiness: increases when "good" things happen, and vice-versa
+  - fame: fixed at creation time; famous players will attract crowds. This could be flags rather than a single value, e.g. "pinball wizard", "beat-em-up king"
+  - tickets won: total number of tickets won
+  - ticket balance
+  - prizes won: total number of prizes won
+  - prize value won: value of all prizes won
+
+TODO: need a list of things that affect these attributes
+
+---
+
+## Implementation Details
 
 ## Win Conditions
 
@@ -46,11 +67,12 @@ Arcade is judged on a bunch of metrics:
 
 ## Resources to Manage
 
-### Money
+### Outgoings
 
-### Electricity
-
-### Stock
+  - Rent
+  - Staff wages
+  - Electricity
+  - Stock
 
 ## Map
 
